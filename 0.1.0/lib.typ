@@ -1,4 +1,3 @@
-
 /// Entry point for the library
 /// Author: @uwni 菱華
 /// Version: 0.1.0
