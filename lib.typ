@@ -5,7 +5,7 @@
 /// License: MPL-2.0
 
 #let _amlos_dict = state("amlos-dict", ())
-#let desc_label(id) = label("amlos_desc" + str(id))
+#let _desc_label(id) = label("amlos_desc" + str(id))
 
 #let defsym(group: "default", math: false, symbol, desc) = {
   // the index of amlos-dict give a unique id to the symbol
@@ -17,7 +17,7 @@
   context {
     // for current symbol, we can query the description listed
     let id = _amlos_dict.get().len() - 1
-    let desc = query(desc_label(id))
+    let desc = query(_desc_label(id))
     // no description found, may caused by user didn't list the description
     // the cross reference will not be created
     if desc.len() == 0 {
@@ -49,7 +49,7 @@
     }
     (
       def,
-      [#desc#desc_label(id)],
+      [#desc#_desc_label(id)],
       link(def_loc, [#page_num]),
     )
   }
