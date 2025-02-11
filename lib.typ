@@ -5,7 +5,7 @@
 /// License: MPL-2.0
 
 #let _amlos_dict = state("amlos-dict", ())
-#let _desc_label(id) = label("amlos_desc" + str(id))
+#let _desc_label(id) = label("amlos-desc:" + str(id))
 
 #let defsym(group: "default", math: false, symbol, desc) = {
   // the index of amlos-dict give a unique id to the symbol
@@ -30,7 +30,7 @@
 #let use-symbol-list(group: "default", fn) = context {
   let defs = _amlos_dict.final()
   let group = if type(group) == str {
-    (group, )
+    (group,)
   } else if type(group) == array {
     group
   } else {
