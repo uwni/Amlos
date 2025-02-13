@@ -1,6 +1,6 @@
 [package]
 name = "amlos"
-version = "0.2.0"
+version = "0.2.1"
 entrypoint = "lib.typ"
 authors = ["uwni <https://github.com/uwni>"]
 license = "MPL-2.0"

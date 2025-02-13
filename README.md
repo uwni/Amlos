@@ -30,6 +30,7 @@ Confirm [`manual.typ`](https://github.com/uwni/Amlos/blob/main/manual.typ) and [
 v 0.1.0: basic functionalities
 
 v 0.2.0: support for list symbols from multiple groups
+v 0.2.1: fix a small bug
 
 ## License
 Mozilla Public License Version 2.0
