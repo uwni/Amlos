@@ -1,34 +1,33 @@
 
 /// Entry point for the library
 /// Author: @uwni 菱華
-/// Version: 0.1.0
+/// Version: 0.2.1
 /// License: MPL-2.0
 
 #let _amlos_dict = state("amlos-dict", ())
 #let _desc_label(id) = label("amlos-desc:" + str(id))
 
-#let defsym(group: "default", math: false, symbol, desc) = {
-  // the index of amlos-dict give a unique id to the symbol
-  context {
+#let defsym(group: "default", math: false, symbol, desc) = context {
+    if type(group) != str {
+      panic("group must be a string")
+    }
+    // the index of amlos-dict give a unique id to the symbol
     let record = (group, symbol, desc, here())
     _amlos_dict.update(old => old + (record,))
-  }
 
-  context {
     // for current symbol, we can query the description listed
-    let id = _amlos_dict.get().len() - 1
+    let id = _amlos_dict.get().len() 
     let desc = query(_desc_label(id))
     // no description found, may caused by user didn't list the description
     // the cross reference will not be created
     if desc.len() == 0 {
-      return symbol
+      symbol
+    } else {
+      link(desc.at(0).location(), symbol)
     }
-    link(desc.at(0).location(), symbol)
-  }
 }
 
 #let use-symbol-list(group: "default", fn) = context {
-  let defs = _amlos_dict.final()
   let group = if type(group) == str {
     (group,)
   } else if type(group) == array {
